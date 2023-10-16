@@ -321,7 +321,7 @@ class _DemoSellerState extends State<DemoSeller> {
                               ],
                             ),
                           ),
-
+                         //***********************************************
                           // if (firstNameError.isNotEmpty) SizedBox(height:_height*0.01 ),
                           if (firstNameError.isNotEmpty)
                             Align(
@@ -511,7 +511,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                       controller: _emailController,
                                       focusNode: _emailFocus,
                                       textInputAction: TextInputAction.next,
-                                      keyboardType: TextInputType.name,
+                                      keyboardType: TextInputType.emailAddress,
                                       onEditingComplete: () {
                                         _focusChange(
                                             context, _emailFocus, _phoneFocus);
@@ -591,7 +591,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                     ),
                                     child: TextFormField(
                                       controller: _phoneController,
-                                      keyboardType: TextInputType.number,
+                                      keyboardType: TextInputType.phone,
                                       textInputAction: TextInputAction.next,
                                       focusNode: _phoneFocus,
                                       onEditingComplete: () {
@@ -1230,7 +1230,7 @@ class _DemoSellerState extends State<DemoSeller> {
       setState(() {
         shopNameError = 'Please enter your  shop name';
       });
-    } else if (!_isValidFirstName(firstName)) {
+    } else if (!_isValidShopName(shopName)) {
       setState(() {
         shopNameError = 'Must be minimum four letter';
       });

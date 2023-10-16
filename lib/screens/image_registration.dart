@@ -108,6 +108,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
   _imgFromGallery() async {
     await picker.pickImage(source: ImageSource.gallery).then((value) {
       if (value != null) {
+        _selectedFileName = value.name;
         _cropImage(File(value.path));
       }
     });
@@ -198,7 +199,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                       ),
                       onTap: () {
                         //_imgFromGallery();
-                        _pickLogo(1.0);
+                        _pickLogo(6.0);
                         Navigator.pop(context);
                       },
                     )),
@@ -386,7 +387,8 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                         horizontal: _width * (8 / 360),
                         vertical: _height * (2 / 600)),
                     padding: EdgeInsets.symmetric(
-                        horizontal: _width*(6/360), vertical: _height*(4/600)),
+                        horizontal: _width * (6 / 360),
+                        vertical: _height * (4 / 600)),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
@@ -417,9 +419,11 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(5),
-                                height: _height * (90 / 600),
-                                width: _width * (120 / 360),
+                                //padding: EdgeInsets.all(5),
+                                // height: _height * 0.167,
+                                // width: _width * 0.28,
+                                height: _height * (95/ 600),
+                                width: _width * (122 / 360),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(color: Colors.blue),
@@ -438,11 +442,13 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                         //fit: BoxFit.cover,
                                         imageUrl:
                                             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFBr35nsGltX_wIDUpo4TCQCXGHsnU1P9qUQ&usqp=CAU",
-                                        progressIndicatorBuilder: (context, url,
-                                                downloadProgress) =>
-                                            CircularProgressIndicator(
-                                                value:
-                                                    downloadProgress.progress),
+                                        progressIndicatorBuilder:
+                                            (context, url, downloadProgress) =>
+                                                Center(
+                                          child: CircularProgressIndicator(
+                                              strokeWidth: 5,
+                                              value: downloadProgress.progress),
+                                        ),
                                         errorWidget: (context, url, error) =>
                                             Icon(Icons.error),
                                       ),
@@ -451,7 +457,8 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                 //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFBr35nsGltX_wIDUpo4TCQCXGHsnU1P9qUQ&usqp=CAU"),
                               ),
                               Container(
-                                height: _height * (90 / 600),
+                                height: _height * (95 / 600),
+                                //color: Colors.orange,
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -459,19 +466,23 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                     Container(
                                       alignment: Alignment.center,
                                       padding: EdgeInsets.symmetric(
-                                          vertical: _height*(8/600), horizontal:  _width*(4/360)),
-                                      width: _width * (190 / 360),
+                                          vertical: _height * (8 / 600),
+                                          horizontal: _width * (4 / 360)),
+                                      //height: _height * (30 / 600),
+                                      width: _width * (180/ 360),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
+                                        borderRadius: BorderRadius.circular(10),
                                         border: Border.all(color: Colors.blue),
                                       ),
-                                      child: Text(_selectedFileName == null
-                                          ? 'Select File'
-                                          : '${_selectedFileName}'),
+                                      child: _selectedFileName == null
+                                          ? Icon(Icons.abc)
+                                          : Text('${_selectedFileName}'),
+                                      //  print('${_selectedFileName}');
                                     ),
                                     ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          fixedSize: Size(200, 30),
+                                          fixedSize: Size(_width * (180 / 360),
+                                              _height * (30 / 600)),
                                           backgroundColor: Colors.grey,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -489,17 +500,19 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                             ],
                           ),
                           SizedBox(
-                            height: 10,
+                            height: _height*(5/360),
                           ),
                           // *******************************************************************************
                           Container(
+                            // color: Colors.orange,
+
                             padding: EdgeInsets.all(1),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(color: Colors.blue),
                             ),
-                            height: 150,
-                            width: double.infinity,
+                            height: _height * (60 / 360),
+                            width: _width * (360 / 360),
                             child: logoFile != null
                                 ? ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
@@ -513,10 +526,12 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                 : CachedNetworkImage(
                                     imageUrl:
                                         "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=",
-                                    progressIndicatorBuilder: (context, url,
-                                            downloadProgress) =>
-                                        CircularProgressIndicator(
-                                            value: downloadProgress.progress),
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            Center(
+                                      child: CircularProgressIndicator(
+                                          value: downloadProgress.progress),
+                                    ),
                                     errorWidget: (context, url, error) =>
                                         Icon(Icons.error),
                                   ),
@@ -532,14 +547,15 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                           Container(
                             alignment: Alignment.center,
                             padding: EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 4),
-                            width: 400,
+                                horizontal: _width * (8 / 360),
+                                vertical: _height * (4 / 600)),
+                            width: _width * (360 / 360),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(color: Colors.blue),
                             ),
                             child: Text(_selectedLogoName == null
-                                ? 'Upload Banner or Sign Bored Picture'
+                                ? ''
                                 : '${_selectedLogoName}'),
                           ),
                           SizedBox(
@@ -549,7 +565,8 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                             alignment: Alignment.centerRight,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  fixedSize: Size(140, 30),
+                                  fixedSize:  Size(_width * (140 /360),
+                                      _height * (30 /600)),
                                   backgroundColor: Colors.grey,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -565,13 +582,15 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                           Container(
                             margin: EdgeInsets.all(3),
                             //padding: EdgeInsets.all(10),
-                            height: 40,
-                            width: 380,
+                            height: _height * (27 / 600),
+                            width: _width * (350 / 360),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: passwordError.isEmpty
-                                  ? Color(0xFF069DD8)
-                                  : Colors.red,),
+                              border: Border.all(
+                                color: passwordError.isEmpty
+                                    ? Color(0xFF069DD8)
+                                    : Colors.red,
+                              ),
                             ),
                             child: Row(
                               children: [
@@ -579,15 +598,15 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   flex: 3,
                                   child: Container(
                                     padding: EdgeInsets.all(10),
-                                    height: 40,
+                                    height: _height * (27 / 600),
                                     //width: 80,
                                     decoration: BoxDecoration(
                                       //color: Colors.red,
                                       border: Border(
                                           right: BorderSide(
-                                            color: Color(0xFF069DD8),
-                                            width: _width / 180,
-                                          )),
+                                        color: Color(0xFF069DD8),
+                                        width: _width / 180,
+                                      )),
                                     ),
                                     child: Text("Password"),
                                   ),
@@ -596,7 +615,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   flex: 4,
                                   child: Container(
                                     padding: EdgeInsets.all(10),
-                                    height: 40,
+                                    height: _height * (27 / 600),
                                     //width: 300,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
@@ -608,6 +627,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                       controller: passwordController,
+                                      textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
                                         border: OutlineInputBorder(
                                           borderSide: BorderSide.none,
@@ -639,13 +659,15 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                           Container(
                             margin: EdgeInsets.all(3),
                             //padding: EdgeInsets.all(10),
-                            height: 40,
-                            width: 380,
+                            height: _height * (27 / 600),
+                            width: _width * (350 / 360),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: retypePasswordError.isEmpty
-                                  ? Color(0xFF069DD8)
-                                  : Colors.red,),
+                              border: Border.all(
+                                color: retypePasswordError.isEmpty
+                                    ? Color(0xFF069DD8)
+                                    : Colors.red,
+                              ),
                             ),
                             child: Row(
                               children: [
@@ -653,15 +675,15 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   flex: 3,
                                   child: Container(
                                     padding: EdgeInsets.all(10),
-                                    height: 40,
+                                    height: _height * (27 / 600),
                                     //width: 80,
                                     decoration: BoxDecoration(
                                       //color: Colors.red,
                                       border: Border(
                                           right: BorderSide(
-                                            color: Color(0xFF069DD8),
-                                            width: _width / 180,
-                                          )),
+                                        color: Color(0xFF069DD8),
+                                        width: _width / 180,
+                                      )),
                                     ),
                                     child: Text("Retype Password"),
                                   ),
@@ -670,7 +692,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   flex: 4,
                                   child: Container(
                                     padding: EdgeInsets.all(10),
-                                    height: 40,
+                                    height: _height * (27 / 600),
                                     //width: 300,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
@@ -682,6 +704,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                         controller: retypePasswordController,
                                         autovalidateMode:
                                             AutovalidateMode.onUserInteraction,
+                                        textInputAction: TextInputAction.done,
                                         decoration: InputDecoration(
                                           border: OutlineInputBorder(
                                             borderSide: BorderSide.none,
@@ -739,7 +762,8 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   Text(
                                     " I agree to your  ",
                                     style: TextStyle(
-                                        fontSize: 14,
+                                        fontSize:
+                                            _width * 0.016 + _height * 0.010,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   ),
@@ -753,12 +777,13 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                       child: Text(
                                         'Terms and Condition',
                                         style: TextStyle(
-                                            fontSize: 16,
+                                            fontSize: _width * 0.018 +
+                                                _height * 0.012,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.blue,
                                             decoration:
                                                 TextDecoration.underline),
-                                      ))
+                                      )),
                                 ],
                               ),
                               //Text('I agree to Your Terms and Condition'),
@@ -769,7 +794,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                             children: [
                               MaterialButton(
                                 color: Colors.grey,
-                                minWidth: 120,
+                                minWidth: _width * (105 / 360),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 onPressed: () {
@@ -782,11 +807,11 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                height: 40,
+                                height: _height * (17 / 360),
                               ),
                               MaterialButton(
                                 color: Colors.blue,
-                                minWidth: 140,
+                                minWidth: _width * (125 / 360),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 onPressed: () {
@@ -794,9 +819,11 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   // passwordController.clear();
                                   _validatePasswordFields();
                                   _validateRetypeFields();
-                                  if(passwordError.isEmpty && retypePasswordError.isEmpty){
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => HomeDemo()));
+                                  if (passwordError.isEmpty &&
+                                      retypePasswordError.isEmpty) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => HomeDemo()));
                                   }
                                 },
                                 child: Text(
@@ -805,12 +832,12 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700),
                                 ),
-                                height: 40,
+                                height: _height * (17 / 360),
                               ),
                             ],
                           ),
                           SizedBox(
-                            height: 10,
+                            height: _height * (5 / 360),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -818,7 +845,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                               Text(
                                 "Already have an account ",
                                 style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: _width * 0.020 + _height * 0.014,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
                               ),
@@ -832,7 +859,8 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   child: Text(
                                     'Login',
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize:
+                                            _width * 0.021 + _height * 0.015,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.blue,
                                         decoration: TextDecoration.underline),
@@ -865,14 +893,13 @@ class _ImageRegistrationState extends State<ImageRegistration> {
       });
     } else if (!_isValidPassword(password)) {
       setState(() {
-        passwordError = 'Please retype your password';
+        passwordError = 'Atleast 1 U_Case,L_case,Special & Number must 8 digit';
+      });
+    } else if (retypePassword != passwordController.text) {
+      setState(() {
+        retypePasswordError = 'Password must be matched';
       });
     }
-      // else if (retypePassword != passwordController.text) {
-    //   setState(() {
-    //     passwordError = 'Update Your Retype Password';
-    //   });
-    // }
   }
 
   void _validateRetypeFields() {
