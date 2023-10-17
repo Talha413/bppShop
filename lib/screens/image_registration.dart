@@ -493,7 +493,13 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                               //showOptions(),
                                               showImagePicker(context),
                                             },
-                                        child: Text('Browse'))
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Icon(Icons.file_upload),
+                                            Text('Browse'),
+                                          ],
+                                        ))
                                   ],
                                 ),
                               )
@@ -542,7 +548,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                             //       ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: _height*(10/360),
                           ),
                           Container(
                             alignment: Alignment.center,
@@ -554,12 +560,12 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(color: Colors.blue),
                             ),
-                            child: Text(_selectedLogoName == null
-                                ? ''
-                                : '${_selectedLogoName}'),
+                            child: _selectedLogoName == null ?
+                                Icon(Icons.abc)
+                                : Text('${_selectedLogoName}'),
                           ),
                           SizedBox(
-                            height: 5,
+                            height: _height*(5/360),
                           ),
                           Align(
                             alignment: Alignment.centerRight,
@@ -577,7 +583,13 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                       // showOptions(),
                                       showLogoPicker(context),
                                     },
-                                child: Text('Browse')),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(Icons.file_upload),
+                                    Text('Browse'),
+                                  ],
+                                )),
                           ),
                           Container(
                             margin: EdgeInsets.all(3),
@@ -820,7 +832,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   _validatePasswordFields();
                                   _validateRetypeFields();
                                   if (passwordError.isEmpty &&
-                                      retypePasswordError.isEmpty) {
+                                      retypePasswordError.isEmpty && imageFile!=null && logoFile!=null) {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) => HomeDemo()));
