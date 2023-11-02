@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bpp_shop/screens/demo_seller.dart';
-import 'package:bpp_shop/screens/home_demo.dart';
+import 'package:bpp_shop/screens/sign_up_page.dart';
+import 'package:bpp_shop/screens/sign_in_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -553,7 +553,7 @@ class _IamgeDemoState extends State<IamgeDemo> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                DemoSeller()));
+                                                SignUpPage()));
                                   },
                                   child: Text(
                                     'Terms and Condition',
@@ -578,7 +578,7 @@ class _IamgeDemoState extends State<IamgeDemo> {
                                 borderRadius: BorderRadius.circular(10)),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => DemoSeller()));
+                                  builder: (context) => SignUpPage()));
                             },
                             child: Text(
                               "Back",
@@ -597,7 +597,7 @@ class _IamgeDemoState extends State<IamgeDemo> {
                               //phoneController.clear();
                               // passwordController.clear();
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => HomeDemo()));
+                                  builder: (context) => SignInPage()));
                             },
                             child: Text(
                               "Submit",
@@ -625,7 +625,7 @@ class _IamgeDemoState extends State<IamgeDemo> {
                           InkWell(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => DemoSeller()));
+                                    builder: (context) => SignUpPage()));
                               },
                               child: Text(
                                 'Login',

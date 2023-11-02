@@ -1,17 +1,18 @@
-import 'package:bpp_shop/screens/image_registration.dart';
+import 'package:bpp_shop/screens/sign_up_page_2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 import '../widgets/CustomClipper.dart';
 
-class DemoSeller extends StatefulWidget {
-  const DemoSeller({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<DemoSeller> createState() => _DemoSellerState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _DemoSellerState extends State<DemoSeller> {
+class _SignUpPageState extends State<SignUpPage> {
   _focusChange(
       BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
@@ -117,14 +118,14 @@ class _DemoSellerState extends State<DemoSeller> {
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Color(0xfff3f3f3),
+      //backgroundColor: Color(0xfff3f3f3),
       body: Stack(children: [
         ClipPath(
           clipper: CustomClipperImage(),
           child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              color: Color(0xffffffff)),
+            color: Theme.of(context).colorScheme.secondary,),
         ),
         SingleChildScrollView(
           physics:
@@ -162,20 +163,20 @@ class _DemoSellerState extends State<DemoSeller> {
                         horizontal: _width / 36, vertical: _height / 60),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
+                      color:Theme.of(context).colorScheme.primaryContainer,
                     ),
                     child: Form(
                       key: _formKey,
                       child: Column(
                         children: [
                           Text(
-                            "Become a Seller ",
+                            "Become a Seller".tr().toString(),
                             style: TextStyle(
                                 fontSize: _width * 0.06,
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            'Welcome to seller registration',
+                             "Welcome to seller registration".tr().toString(),
                             style: TextStyle(
                                 fontSize: _width * 0.045,
                                 fontWeight: FontWeight.bold),
@@ -191,7 +192,7 @@ class _DemoSellerState extends State<DemoSeller> {
                             child: Padding(
                               padding: EdgeInsets.all(_width / 120),
                               child: Text(
-                                'Seller Info',
+                                'Seller Info'.tr().toString(),
                                 style: TextStyle(
                                     fontSize: _width * 0.04,
                                     fontWeight: FontWeight.w500),
@@ -229,7 +230,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: _width / 180,
                                       )),
                                     ),
-                                    child: Text("First Name"),
+                                    child: Text("First name".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -362,7 +363,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: 2,
                                       )),
                                     ),
-                                    child: Text("Last Name"),
+                                    child: Text("Last name".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -492,7 +493,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: 2,
                                       )),
                                     ),
-                                    child: Text("Email address"),
+                                    child: Text("Email address".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -574,7 +575,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: 2,
                                       )),
                                     ),
-                                    child: Text("Phone Number"),
+                                    child: Text("Phone number".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -664,7 +665,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: 2,
                                       )),
                                     ),
-                                    child: Text("Shop name "),
+                                    child: Text("Shop name".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -742,7 +743,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: 2,
                                       )),
                                     ),
-                                    child: Text("District/City"),
+                                    child: Text("District/City".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -830,7 +831,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: 2,
                                       )),
                                     ),
-                                    child: Text("Upozilla/Thana"),
+                                    child: Text("Upozilla/Thana".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -920,7 +921,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                         width: 2,
                                       )),
                                     ),
-                                    child: Text("Area/Word/Union"),
+                                    child: Text("Area/Word/Union".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -1015,7 +1016,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: _width * (10 / 360),
                                     vertical: _height * (5 / 600)),
-                                hintText: "Shop address",
+                                hintText: "Shop address".tr().toString(),
                                 border: OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                 ),
@@ -1072,7 +1073,7 @@ class _DemoSellerState extends State<DemoSeller> {
                                   // && _areaWordError!.isEmpty
                                   ) {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ImageRegistration()));
+                                    builder: (context) => SignUpPage2()));
                               }
 
                               // if (_fnController.text.isNotEmpty &&
@@ -1095,7 +1096,7 @@ class _DemoSellerState extends State<DemoSeller> {
                               // }
                             },
                             child: Text(
-                              "Next",
+                              "Next".tr().toString(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700),
@@ -1107,21 +1108,22 @@ class _DemoSellerState extends State<DemoSeller> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Already have an account ",
+                                "Already have an account".tr().toString(),
                                 style: TextStyle(
                                     fontSize: _height * 0.02,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                    //color: Colors.black
+                                ),
                               ),
                               InkWell(
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                ImageRegistration()));
+                                                SignUpPage2()));
                                   },
                                   child: Text(
-                                    'Login',
+                                    'Login'.tr().toString(),
                                     style: TextStyle(
                                         fontSize: _height * 0.02,
                                         fontWeight: FontWeight.bold,

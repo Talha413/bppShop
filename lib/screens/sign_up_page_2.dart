@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:bpp_shop/Demo/ImageCropperHelper.dart';
-import 'package:bpp_shop/screens/demo_seller.dart';
-import 'package:bpp_shop/screens/home_demo.dart';
+import 'package:bpp_shop/screens/sign_up_page.dart';
+import 'package:bpp_shop/screens/sign_in_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -13,14 +14,14 @@ import '../widgets/CustomClipper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_cropper/image_cropper.dart';
 
-class ImageRegistration extends StatefulWidget {
-  const ImageRegistration({super.key});
+class SignUpPage2 extends StatefulWidget {
+  const SignUpPage2({super.key});
 
   @override
-  State<ImageRegistration> createState() => _ImageRegistrationState();
+  State<SignUpPage2> createState() => _SignUpPage2State();
 }
 
-class _ImageRegistrationState extends State<ImageRegistration> {
+class _SignUpPage2State extends State<SignUpPage2> {
   bool? ischecked = false;
   File? imageFile;
   File? logoFile;
@@ -342,7 +343,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
     final _height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Color(0xfff3f3f3),
+      //backgroundColor: Color(0xfff3f3f3),
       body: Stack(children: [
         //ClipPath(()),
         ClipPath(
@@ -350,7 +351,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
           child: Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              color: Color(0xffffffff)),
+            color: Theme.of(context).colorScheme.secondary,),
         ),
 
         //physics:
@@ -391,7 +392,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                         vertical: _height * (4 / 600)),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
+                      color:Theme.of(context).colorScheme.primaryContainer,
                     ),
                     // color: Colors.white,
                     // height: MediaQuery.of(context).size.height * 0.82,
@@ -400,12 +401,12 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                       key: _formkey,
                       child: Column(
                         children: [
-                          Text("Become a Seller ",
+                          Text("Become a Seller".tr().toString(),
                               style: TextStyle(
                                   fontSize: _width * 0.06,
                                   fontWeight: FontWeight.bold)),
                           Text(
-                            'Welcome to seller registration',
+                            'Welcome to seller registration'.tr().toString(),
                             style: TextStyle(
                                 fontSize: _width * 0.045,
                                 fontWeight: FontWeight.bold),
@@ -497,7 +498,12 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Icon(Icons.file_upload),
-                                            Text('Browse'),
+                                            Text('Browse'.tr().toString(),
+                                              style: TextStyle(
+                                                  fontSize:
+                                                  _width * 0.021 + _height * 0.015,
+                                                  fontWeight: FontWeight.bold,),
+                                            ),
                                           ],
                                         ))
                                   ],
@@ -555,7 +561,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: _width * (8 / 360),
                                 vertical: _height * (4 / 600)),
-                            width: _width * (360 / 360),
+                            width: _width * (360/360),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(color: Colors.blue),
@@ -587,7 +593,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Icon(Icons.file_upload),
-                                    Text('Browse'),
+                                    Text('Browse'.tr().toString()),
                                   ],
                                 )),
                           ),
@@ -620,7 +626,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                         width: _width / 180,
                                       )),
                                     ),
-                                    child: Text("Password"),
+                                    child: Text("Password".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -697,7 +703,7 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                         width: _width / 180,
                                       )),
                                     ),
-                                    child: Text("Retype Password"),
+                                    child: Text("Retype Password".tr().toString()),
                                   ),
                                 ),
                                 Expanded(
@@ -772,22 +778,23 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    " I agree to your  ",
+                                    "I agree to your".tr().toString(),
                                     style: TextStyle(
                                         fontSize:
                                             _width * 0.016 + _height * 0.010,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.black),
+                                        //color: Colors.black
+                                    ),
                                   ),
                                   InkWell(
                                       onTap: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    DemoSeller()));
+                                                    SignUpPage()));
                                       },
                                       child: Text(
-                                        'Terms and Condition',
+                                        'Terms and Condition'.tr().toString(),
                                         style: TextStyle(
                                             fontSize: _width * 0.018 +
                                                 _height * 0.012,
@@ -811,10 +818,10 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                     borderRadius: BorderRadius.circular(10)),
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => DemoSeller()));
+                                      builder: (context) => SignUpPage()));
                                 },
                                 child: Text(
-                                  "Back",
+                                  "Back".tr().toString(),
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700),
@@ -835,11 +842,11 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                                       retypePasswordError.isEmpty && imageFile!=null && logoFile!=null) {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
-                                            builder: (context) => HomeDemo()));
+                                            builder: (context) => SignInPage()));
                                   }
                                 },
                                 child: Text(
-                                  "Submit",
+                                  "Submit".tr().toString(),
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700),
@@ -855,21 +862,22 @@ class _ImageRegistrationState extends State<ImageRegistration> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Already have an account ",
+                                "Already have an account".tr().toString(),
                                 style: TextStyle(
                                     fontSize: _width * 0.020 + _height * 0.014,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                    //color: Colors.black
+                                ),
                               ),
                               InkWell(
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                DemoSeller()));
+                                                SignInPage()));
                                   },
                                   child: Text(
-                                    'Login',
+                                    'Login'.tr().toString(),
                                     style: TextStyle(
                                         fontSize:
                                             _width * 0.021 + _height * 0.015,

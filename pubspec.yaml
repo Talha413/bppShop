@@ -46,6 +46,31 @@ dependencies:
   cached_network_image: ^3.2.3
   image_cropper: ^4.0.1
   dotted_border: ^2.0.0+3
+  get_storage: ^2.1.1
+  introduction_screen: ^3.1.4
+  flutter_native_splash: ^2.2.16
+  provider: ^6.0.5
+  easy_localization: ^3.0.2
+
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  color_dark: "#272727"
+  image: assets/logo_1.jpg
+  image_dark: assets/logo_1.jpg
+
+
+  android_12:
+    color: "#FFFFFF"
+    color_dark: "#272727"
+    image: assets/logo_1.jpg
+    image_dark: assets/logo_1.jpg
+
+  ios: true
+  web: false
+
+
+
 
 
 dev_dependencies:
@@ -58,6 +83,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -73,6 +99,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/bpp shop logo 01.896abfc13589245ecc62.png
+    - assets/translations/en.json
+    - assets/translations/bn.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

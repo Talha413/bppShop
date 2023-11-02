@@ -1,17 +1,20 @@
-import 'package:bpp_shop/screens/demo_seller.dart';
+import 'package:bpp_shop/ThemeChange/ChangeThemeButton.dart';
+import 'package:bpp_shop/screens/sign_up_page.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-
+import 'package:easy_localization/easy_localization.dart';
+import '../ThemeChange/theme_provider.dart';
 import '../widgets/CustomClipper.dart';
+import 'package:provider/provider.dart';
 
-class HomeDemo extends StatefulWidget {
-  const HomeDemo({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<HomeDemo> createState() => _HomeDemoState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _HomeDemoState extends State<HomeDemo> {
+class _SignInPageState extends State<SignInPage> {
   _focusChange(
       BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
@@ -98,20 +101,80 @@ class _HomeDemoState extends State<HomeDemo> {
 
   @override
   Widget build(BuildContext context) {
+    final  themeColor= Provider.of<ThemeProvider>(context);
     final _width = MediaQuery.of(context).size.width;
     final _height = MediaQuery.of(context).size.height;
+
 
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Color(0xfff3f3f3),
+        //backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: AppBar(
+          //automaticallyImplyLeading: false,
+          // actions: [
+          //   ChangeThemeButton() ,
+          // ],
+          //backgroundColor: Colors.red,
+        ),
+
+        drawer: Drawer(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          child: ListView(
+            children: [
+              DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlueAccent,
+                    //image: AssetImage()
+                  ),
+                  child:Center(child: Text("App Funtionalities"))),
+              // SizedBox(
+              //   height: 300,
+              // ),
+              ListTile(
+                leading:Text("Change App Theme") ,
+                //title:
+                trailing: ChangeThemeButton() ,
+              ),
+              // ListTile(
+              //   leading:Center(child: Text("Set Language ")) ,
+              //   //title:
+              //   trailing: TextButton(
+              //     onPressed: (){},
+              //     child: Text("a"),
+              //   )
+              // ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+
+                    onPressed: () {
+                      context.locale = new Locale("bn");
+                    },
+                    child: Text("Set Language :                                       Bangla")),
+              ),
+              SizedBox(
+                width: 3,
+              ),
+              TextButton(
+                  onPressed: () {
+                    context.locale = new Locale("en");
+                  },
+                  child: Text("                                                             English")),
+            ],
+
+          ),
+        ),
         body: Stack(
           clipBehavior: Clip.none,
           children: [
             ClipPath(
               clipper: CustomClipperImage(),
               child: Container(
-                  height: _height, width: _width, color: Color(0xffffffff)),
+                  height: _height, width: _width,
+                  //color: Color(0xffffffff)
+                  color: Theme.of(context).colorScheme.secondary,
+              ),
               //
             ),
 
@@ -127,6 +190,7 @@ class _HomeDemoState extends State<HomeDemo> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      //DarkModeSwitch(),
                       SizedBox(
                         height: _height * (70 / 600),
                       ),
@@ -144,7 +208,10 @@ class _HomeDemoState extends State<HomeDemo> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
+                          //color: Colors.white,
+                          //color:ThemeData.dark().colorScheme.primaryContainer,
+                          //color: themeColor.themeMode==theme.dark?
+                          color:Theme.of(context).colorScheme.primaryContainer,
                         ),
                         alignment: Alignment.center,
                         //margin: EdgeInsets.symmetric(vertical: _hight*0.05, horizontal: _width*0.05),
@@ -153,20 +220,22 @@ class _HomeDemoState extends State<HomeDemo> {
                               horizontal: _width * 0.03, vertical: _height * 0.03),
                           child: Column(
                             children: [
-                              Text('Sign In ',
+                              Text('Sign In'.tr().toString(),
                                   style: TextStyle(
                                       fontSize: _width * 0.07,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xff334257))),
+                                      //color: Color(0xff334257)
+                                  )),
                               SizedBox(
                                 height: MediaQuery.of(context).size.height / 120,
                               ),
                               Text(
-                                'Wellcome to seller login',
+                                'Wellcome to seller login'.tr().toString(),
                                 style: TextStyle(
                                     fontSize: _width * 0.05,
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xff334257)),
+                                    //color: Color(0xff334257)
+                                ),
                               ),
 
                               Divider(
@@ -183,11 +252,12 @@ class _HomeDemoState extends State<HomeDemo> {
                                       Align(
                                         alignment: Alignment.topLeft,
                                         child: Text(
-                                          'Mobile',
+                                          'Mobile'.tr().toString(),
                                           style: TextStyle(
                                               fontSize: _width * 0.04,
                                               fontWeight: FontWeight.bold,
-                                              color: Color(0xff334257)),
+                                              //color: Color(0xff334257)
+                                          ),
                                         ),
                                       ),
                                       SizedBox(
@@ -219,11 +289,12 @@ class _HomeDemoState extends State<HomeDemo> {
                                               AutovalidateMode.onUserInteraction,
                                           decoration: InputDecoration(
                                             filled: true,
-                                            fillColor: Color(0xffe0e0e0),
-                                            hintText: " Enter Mobile  ",
+                                            fillColor: Theme.of(context).colorScheme.secondary,
+                                            hintText: "Enter Mobile Number".tr().toString(),
                                             hintStyle: TextStyle(
                                               fontSize: _width * 0.015 +_height*0.010,
                                               fontWeight: FontWeight.bold,
+                                              //color:
                                             ),
                                             //border: BorderRadius.circular(10),
                                             border: OutlineInputBorder(
@@ -346,11 +417,12 @@ class _HomeDemoState extends State<HomeDemo> {
                                       Align(
                                         alignment: Alignment.topLeft,
                                         child: Text(
-                                          'Password',
+                                          'Password'.tr().toString(),
                                           style: TextStyle(
                                               fontSize: _width * 0.04,
                                               fontWeight: FontWeight.bold,
-                                              color: Color(0xff334257)),
+                                              //color: Color(0xff334257)
+                                          ),
                                         ),
                                       ),
                                       SizedBox(
@@ -378,8 +450,8 @@ class _HomeDemoState extends State<HomeDemo> {
                                           textInputAction: TextInputAction.done,
                                           decoration: InputDecoration(
                                             filled: true,
-                                            fillColor: Color(0xffe0e0e0),
-                                            hintText: " Enter Password",
+                                            fillColor:  Theme.of(context).colorScheme.secondary,
+                                            hintText: "Enter Password".tr().toString(),
                                             hintStyle: TextStyle(
                                               fontSize: _width * 0.015 +_height*0.010,
                                               fontWeight: FontWeight.bold,
@@ -482,28 +554,31 @@ class _HomeDemoState extends State<HomeDemo> {
                                     children: [
                                       Checkbox(
                                           value: ischecked,
+                                          activeColor: Colors.blue,
                                           onChanged: (value) {
                                             setState(() {
                                               ischecked = value;
                                             });
                                           }),
                                       Text(
-                                        'Remember Me',
+                                        'Remember Me'.tr().toString(),
                                         style: TextStyle(
                                             fontSize: _width * 0.04,
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xffb2b2b2)),
+                                            //color: Color(0xffb2b2b2)
+                                        ),
                                       ),
                                     ],
                                   ),
                                   TextButton(
                                       onPressed: () {},
                                       child: Text(
-                                        'Forgot Password?',
+                                        'Forgot Password?'.tr().toString(),
                                         style: TextStyle(
                                             fontSize: _width * 0.04,
                                             fontWeight: FontWeight.bold,
-                                            color: Color(0xff4199d9)),
+                                            color: Color(0xff4199d9)
+                                        ),
                                       ))
                                 ],
                               ),
@@ -525,11 +600,11 @@ class _HomeDemoState extends State<HomeDemo> {
                                     // }
                                     if (phoneError.isEmpty && passwordError.isEmpty) {
                                       Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => DemoSeller()));
+                                          builder: (context) => SignUpPage()));
                                     } else {}
                                   },
                                   child: Text(
-                                    "Sign in",
+                                    "Sign In".tr().toString(),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w700),
@@ -558,11 +633,12 @@ class _HomeDemoState extends State<HomeDemo> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Become a seller",
+                                    "Become a seller".tr().toString(),
                                     style: TextStyle(
                                         fontSize: _width * 0.045,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.black),
+                                        //color: Colors.black
+                                    ),
                                   ),
                                   SizedBox(
                                     width: MediaQuery.of(context).size.width / 120,
@@ -570,10 +646,10 @@ class _HomeDemoState extends State<HomeDemo> {
                                   InkWell(
                                       onTap: () {
                                         Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) => DemoSeller()));
+                                            builder: (context) => SignUpPage()));
                                       },
                                       child: Text(
-                                        'Sign Up',
+                                        'Sign Up'.tr().toString(),
                                         style: TextStyle(
                                             fontSize: _width * 0.055,
                                             fontWeight: FontWeight.bold,

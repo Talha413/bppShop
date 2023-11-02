@@ -1,5 +1,5 @@
 
-import 'package:bpp_shop/screens/image_registration.dart';
+import 'package:bpp_shop/screens/sign_up_page_2.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
@@ -977,7 +977,7 @@ class _ResizeTestState extends State<ResizeTest> {
                             InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => ImageRegistration()));
+                                      builder: (context) => SignUpPage2()));
                                 },
                                 child: Text(
                                   'Login',
